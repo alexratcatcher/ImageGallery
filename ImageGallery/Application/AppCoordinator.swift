@@ -16,11 +16,9 @@ class AppCoordinator {
     let imageLoader: ImageLoader
     
     let window: UIWindow
-    let rootViewController: UINavigationController
     
     init(window: UIWindow) {
         self.window = window
-        rootViewController = UINavigationController()
         
         picturesApi = LoremPicsumAPI(session: URLSession.shared)
         
@@ -31,15 +29,13 @@ class AppCoordinator {
     }
     
     func start() {
-        window.rootViewController = rootViewController
-        
         let mainVC = ImageGalleryViewController.instantiate()
         mainVC.title = "Images"
         
         let viewModel = ImageGalleryViewModel(picturesApi: picturesApi, imageLoader: imageLoader)
         mainVC.viewModel = viewModel
         
-        rootViewController.pushViewController(mainVC, animated: false)
+        window.rootViewController = mainVC
         
         window.makeKeyAndVisible()
     }

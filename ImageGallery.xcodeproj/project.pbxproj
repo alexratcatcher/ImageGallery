@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B4B262B22195C652007CFE3E /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B262B12195C652007CFE3E /* Colors.swift */; };
 		B4C7BDA2219541E5002AF287 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C7BDA1219541E5002AF287 /* AppDelegate.swift */; };
 		B4C7BDA9219541E6002AF287 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B4C7BDA8219541E6002AF287 /* Assets.xcassets */; };
 		B4C7BDAC219541E6002AF287 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4C7BDAA219541E6002AF287 /* LaunchScreen.storyboard */; };
@@ -41,6 +42,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B4B262B12195C652007CFE3E /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		B4C7BD9E219541E5002AF287 /* ImageGallery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageGallery.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4C7BDA1219541E5002AF287 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B4C7BDA8219541E6002AF287 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -88,6 +90,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B4B262B02195C638007CFE3E /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				B4B262B12195C652007CFE3E /* Colors.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		B4C7BD95219541E5002AF287 = {
 			isa = PBXGroup;
 			children = (
@@ -115,6 +125,7 @@
 				B4C7BDE42195632C002AF287 /* Networking */,
 				B4C7BDEF2195B06B002AF287 /* ImageLoading */,
 				B4C7BDD221954370002AF287 /* Screens */,
+				B4B262B02195C638007CFE3E /* Utils */,
 				B4C7BDA8219541E6002AF287 /* Assets.xcassets */,
 				B4C7BDAA219541E6002AF287 /* LaunchScreen.storyboard */,
 				B4C7BDAD219541E6002AF287 /* Info.plist */,
@@ -325,6 +336,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B4C7BDEE2195AEC1002AF287 /* ImageCache.swift in Sources */,
+				B4B262B22195C652007CFE3E /* Colors.swift in Sources */,
 				B4C7BDDC21954681002AF287 /* ImageGalleryViewModel.swift in Sources */,
 				B4C7BDE621956355002AF287 /* LoremPicsumAPI.swift in Sources */,
 				B4C7BDEC21957D44002AF287 /* ImageLoader.swift in Sources */,

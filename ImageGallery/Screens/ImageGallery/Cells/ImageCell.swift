@@ -63,14 +63,14 @@ class ImageCell: UICollectionViewCell {
     }
     
     private func createViews() {
-        contentView.backgroundColor = UIColor.lightGray
+        contentView.backgroundColor = Colors.cellBackgroundColor
         contentView.layer.cornerRadius = 12.0
         contentView.layer.masksToBounds = true
         contentView.clipsToBounds = true
         
         let imageFrame = CGRect(x: 0, y: 0, width: 150, height: 150)
         imageView = UIImageView(frame: imageFrame)
-        imageView.backgroundColor = UIColor.lightGray
+        imageView.backgroundColor = Colors.imageBackgroundColor
         imageView.contentMode = .scaleAspectFill
         let path = UIBezierPath(roundedRect: imageFrame, cornerRadius: 12)
         let mask = CAShapeLayer()
@@ -82,11 +82,11 @@ class ImageCell: UICollectionViewCell {
         authorLabel = UILabel(frame: CGRect.zero)
         authorLabel.font = UIFont.systemFont(ofSize: 13)
         authorLabel.textAlignment = .center
-        authorLabel.backgroundColor = UIColor.lightGray
+        authorLabel.backgroundColor = Colors.cellBackgroundColor
         contentView.addSubview(authorLabel)
         
         progressIndicator = UIActivityIndicatorView(style: .white)
-        progressIndicator.backgroundColor = UIColor.lightGray
+        progressIndicator.backgroundColor = Colors.imageBackgroundColor
         progressIndicator.hidesWhenStopped = true
         contentView.addSubview(progressIndicator)
     }

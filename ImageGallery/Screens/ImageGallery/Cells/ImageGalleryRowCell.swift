@@ -53,7 +53,7 @@ class ImageGalleryRowCell: UITableViewCell {
         
         collectionView.register(ImageCell.self, forCellWithReuseIdentifier: ImageCell.reuseIdentifier)
         
-        collectionView.backgroundColor = UIColor.darkGray
+        collectionView.backgroundColor = Colors.backgroundColor
         collectionView.showsHorizontalScrollIndicator = false
         
         collectionView.translatesAutoresizingMaskIntoConstraints = false

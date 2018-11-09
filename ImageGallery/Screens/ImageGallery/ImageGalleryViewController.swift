@@ -113,7 +113,7 @@ extension ImageGalleryViewController {
     
     private func createViews() {
         let view = UIView(frame: UIScreen.main.bounds)
-        view.backgroundColor = UIColor.darkGray
+        view.backgroundColor = Colors.backgroundColor
         self.view = view
         
         createTableView()
@@ -129,14 +129,14 @@ extension ImageGalleryViewController {
         tableView.separatorStyle = .none
         
         let header = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 9.0))
-        header.backgroundColor = UIColor.darkGray
+        header.backgroundColor = Colors.backgroundColor
         tableView.tableHeaderView = header
         
         let footer = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 9.0))
-        footer.backgroundColor = UIColor.darkGray
+        footer.backgroundColor = Colors.backgroundColor
         tableView.tableFooterView = footer
         
-        tableView.backgroundColor = UIColor.darkGray
+        tableView.backgroundColor = Colors.backgroundColor
         
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 193
