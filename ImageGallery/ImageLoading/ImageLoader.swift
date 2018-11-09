@@ -38,13 +38,16 @@ class CachingImageLoader: ImageLoader {
     
     private let picturesApi: PicturesAPI
     private let cache: ImageCache
+    private let resolution: Int
     
     init(picturesApi: PicturesAPI, cache: ImageCache) {
         self.picturesApi = picturesApi
         self.cache = cache
+        self.resolution = 150 * Int(UIScreen.main.scale)
     }
     
     func loadPicture(request: ImageLoadingRequest) {
+        let resolution = self.resolution
         cache.image(forId: request.imageId, completion: { [weak self] image in
             if let image = image {
                 DispatchQueue.main.async {
@@ -53,7 +56,7 @@ class CachingImageLoader: ImageLoader {
                 }
             }
             else {
-                let task = self?.picturesApi.loadPicture(withId: request.imageId, completion: { [weak self] image in
+                let task = self?.picturesApi.loadPicture(withId: request.imageId, resolution: resolution, completion: { [weak self] image in
                     if let image = image {
                         self?.cache.saveImage(image, for: request.imageId)
                     }

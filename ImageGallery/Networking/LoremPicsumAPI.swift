@@ -17,7 +17,7 @@ struct PictureData: Codable {
 
 protocol PicturesAPI {
     func requestPicturesList(completion: @escaping ([PictureData], Error?) -> Void)
-    func loadPicture(withId id: Int, completion: ((UIImage?)->Void)?) -> URLSessionTask
+    func loadPicture(withId id: Int, resolution: Int, completion: ((UIImage?)->Void)?) -> URLSessionTask
 }
 
 
@@ -59,8 +59,8 @@ class LoremPicsumAPI: PicturesAPI {
         task.resume()
     }
     
-    func loadPicture(withId id: Int, completion: ((UIImage?)->Void)?) -> URLSessionTask {
-        let url = baseUrl.appendingPathComponent("150")
+    func loadPicture(withId id: Int, resolution: Int, completion: ((UIImage?)->Void)?) -> URLSessionTask {
+        let url = baseUrl.appendingPathComponent(String(resolution))
         var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false)!
         urlComponents.queryItems = [
             URLQueryItem(name: "image", value: String(id))
