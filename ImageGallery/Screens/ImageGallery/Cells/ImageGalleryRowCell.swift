@@ -13,21 +13,11 @@ class ImageGalleryRowCell: UITableViewCell {
     
     var viewModel: RowViewModel! {
         didSet {
-            let sectionInsets = UIEdgeInsets(top: 18.0, left: 18.0, bottom: viewModel.isLastRow ? 18.0 : 0, right: 18.0)
-            collectionLayout.sectionInset = sectionInsets
-            
-            let height = CGFloat(194 + (viewModel.isLastRow ? 18 : 0))
-            if cellHeight.constant != height {
-                cellHeight.constant = height
-            }
-            
             self.collectionView.reloadData()
         }
     }
     
-    private var collectionLayout: UICollectionViewFlowLayout!
     private var collectionView: UICollectionView!
-    private var cellHeight: NSLayoutConstraint!
     
     static var cellIdentifier: String {
         return "ImageGalleryRowCell"
@@ -44,14 +34,14 @@ class ImageGalleryRowCell: UITableViewCell {
     }
     
     private func createViews() {
-        collectionLayout = UICollectionViewFlowLayout()
-        collectionLayout.scrollDirection = .horizontal
-        collectionLayout.itemSize = CGSize(width: 150, height: 175)
-        collectionLayout.minimumInteritemSpacing = 18.0
-        collectionLayout.minimumLineSpacing = 18.0
-        collectionLayout.sectionInset = UIEdgeInsets(top: 18.0, left: 18.0, bottom: 0.0, right: 18.0)
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        layout.itemSize = CGSize(width: 150, height: 175)
+        layout.minimumInteritemSpacing = 18.0
+        layout.minimumLineSpacing = 18.0
+        layout.sectionInset = UIEdgeInsets(top: 9.0, left: 18.0, bottom: 9.0, right: 18.0)
         
-        collectionView = UICollectionView(frame: contentView.frame, collectionViewLayout: collectionLayout)
+        collectionView = UICollectionView(frame: contentView.frame, collectionViewLayout: layout)
         contentView.addSubview(collectionView)
         
         collectionView.register(ImageCell.nib, forCellWithReuseIdentifier: ImageCell.cellIdentifier)
@@ -61,13 +51,12 @@ class ImageGalleryRowCell: UITableViewCell {
         collectionView.showsHorizontalScrollIndicator = false
         
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        cellHeight = collectionView.heightAnchor.constraint(equalToConstant: 194)
         NSLayoutConstraint.activate([
             collectionView.topAnchor.constraint(equalTo: contentView.topAnchor),
             collectionView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             collectionView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            cellHeight
+            collectionView.heightAnchor.constraint(equalToConstant: 194)
         ])
     }
 }

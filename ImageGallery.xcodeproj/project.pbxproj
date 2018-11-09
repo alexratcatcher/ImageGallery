@@ -20,6 +20,8 @@
 		B4C7BDDF21954794002AF287 /* ImageGalleryRowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C7BDDE21954794002AF287 /* ImageGalleryRowCell.swift */; };
 		B4C7BDE221954E9F002AF287 /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C7BDE021954E9F002AF287 /* ImageCell.swift */; };
 		B4C7BDE321954E9F002AF287 /* ImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4C7BDE121954E9F002AF287 /* ImageCell.xib */; };
+		B4C7BDE621956355002AF287 /* LoremPicsumAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C7BDE521956355002AF287 /* LoremPicsumAPI.swift */; };
+		B4C7BDE8219565A7002AF287 /* NetworkingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C7BDE7219565A7002AF287 /* NetworkingError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +61,8 @@
 		B4C7BDDE21954794002AF287 /* ImageGalleryRowCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageGalleryRowCell.swift; sourceTree = "<group>"; };
 		B4C7BDE021954E9F002AF287 /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
 		B4C7BDE121954E9F002AF287 /* ImageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageCell.xib; sourceTree = "<group>"; };
+		B4C7BDE521956355002AF287 /* LoremPicsumAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoremPicsumAPI.swift; sourceTree = "<group>"; };
+		B4C7BDE7219565A7002AF287 /* NetworkingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +115,7 @@
 			children = (
 				B4C7BDCF219542D6002AF287 /* Application */,
 				B4C7BDD6219545F1002AF287 /* Domain */,
+				B4C7BDE42195632C002AF287 /* Networking */,
 				B4C7BDD221954370002AF287 /* Screens */,
 				B4C7BDA3219541E5002AF287 /* ViewController.swift */,
 				B4C7BDA5219541E5002AF287 /* Main.storyboard */,
@@ -181,6 +186,15 @@
 				B4C7BDE121954E9F002AF287 /* ImageCell.xib */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		B4C7BDE42195632C002AF287 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				B4C7BDE521956355002AF287 /* LoremPicsumAPI.swift */,
+				B4C7BDE7219565A7002AF287 /* NetworkingError.swift */,
+			);
+			path = Networking;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -316,8 +330,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				B4C7BDDC21954681002AF287 /* ImageGalleryViewModel.swift in Sources */,
+				B4C7BDE621956355002AF287 /* LoremPicsumAPI.swift in Sources */,
 				B4C7BDDF21954794002AF287 /* ImageGalleryRowCell.swift in Sources */,
 				B4C7BDD1219542EA002AF287 /* AppCoordinator.swift in Sources */,
+				B4C7BDE8219565A7002AF287 /* NetworkingError.swift in Sources */,
 				B4C7BDA4219541E5002AF287 /* ViewController.swift in Sources */,
 				B4C7BDD5219543AA002AF287 /* ImageGalleryViewController.swift in Sources */,
 				B4C7BDE221954E9F002AF287 /* ImageCell.swift in Sources */,

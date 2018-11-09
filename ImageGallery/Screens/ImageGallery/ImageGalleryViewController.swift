@@ -28,7 +28,15 @@ class ImageGalleryViewController: UIViewController {
         
         tableView.register(ImageGalleryRowCell.self, forCellReuseIdentifier: ImageGalleryRowCell.cellIdentifier)
         tableView.separatorStyle = .none
-        tableView.tableFooterView = UIView(frame: CGRect.zero)
+        
+        let header = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 9.0))
+        header.backgroundColor = UIColor.darkGray
+        tableView.tableHeaderView = header
+        
+        let footer = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 9.0))
+        footer.backgroundColor = UIColor.darkGray
+        tableView.tableFooterView = footer
+
         tableView.backgroundColor = UIColor.darkGray
 
         tableView.rowHeight = UITableView.automaticDimension
@@ -51,6 +59,29 @@ class ImageGalleryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.reloadData()
+        
+        viewModel.onViewStateChanged = { [weak self] state in
+            self?.showViewState(state)
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        viewModel.requiredPicturesCount = 42
+    }
+    
+    func showViewState(_ state: ImageGalleryViewState) {
+        switch state {
+        case .loading:
+            break
+        case .error(let error):
+            break
+        case .empty:
+            break
+        case .pictures:
+            tableView.reloadData()
+        }
     }
 }
 
