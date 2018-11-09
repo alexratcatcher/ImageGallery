@@ -11,7 +11,7 @@ import UIKit
 
 class ImageGalleryRowCell: UITableViewCell {
     
-    var viewModel: RowViewModel! {
+    var viewModel: ImageGalleryRowViewModel! {
         didSet {
             self.collectionView.reloadData()
         }
@@ -19,7 +19,7 @@ class ImageGalleryRowCell: UITableViewCell {
     
     private var collectionView: UICollectionView!
     
-    static var cellIdentifier: String {
+    static var reuseIdentifier: String {
         return "ImageGalleryRowCell"
     }
     

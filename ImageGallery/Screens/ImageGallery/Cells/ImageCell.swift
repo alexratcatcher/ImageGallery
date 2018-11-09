@@ -44,7 +44,7 @@ class ImageCell: UICollectionViewCell {
         super.prepareForReuse()
     }
     
-    func showCellModel(_ model: CellViewModel) {
+    func showCellModel(_ model: ImageCellViewModel) {
         self.authorLabel.text = model.authorName
         
         if let pictureId = model.imageId {

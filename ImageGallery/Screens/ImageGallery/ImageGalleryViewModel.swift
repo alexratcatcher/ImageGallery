@@ -9,16 +9,15 @@
 import Foundation
 
 
-struct CellViewModel {
+struct ImageCellViewModel {
     let imageId: Int?
     let authorName: String?
     let imageLoader: ImageLoader
 }
 
 
-struct RowViewModel {
-    let cells: [CellViewModel]
-    let isLastRow: Bool
+struct ImageGalleryRowViewModel {
+    let cells: [ImageCellViewModel]
 }
 
 
@@ -36,19 +35,25 @@ class ImageGalleryViewModel {
     private let picturesApi: PicturesAPI
     private let imageLoader: ImageLoader
     
-    var data = [RowViewModel]()
     
+    // Output
+    var data = [ImageGalleryRowViewModel]()
+    var onViewStateChanged: ((ImageGalleryViewState)->Void)?
+    
+    // Input
     var requiredPicturesCount: Int = 0 {
         didSet {
             loadPicturesList(maxCount: requiredPicturesCount)
         }
     }
     
-    var onViewStateChanged: ((ImageGalleryViewState)->Void)?
-    
     init(picturesApi: PicturesAPI, imageLoader: ImageLoader) {
         self.picturesApi = picturesApi
         self.imageLoader = imageLoader
+    }
+    
+    func onViewPrepared() {
+        changeViewState(state: .askForCount)
     }
 
     private func loadPicturesList(maxCount: Int) {
@@ -76,21 +81,20 @@ class ImageGalleryViewModel {
     
     private func prepareData(from pictures: [PictureData]) {
         let cellModels = pictures.map({
-            CellViewModel(imageId: $0.id, authorName: $0.author, imageLoader: self.imageLoader)
+            ImageCellViewModel(imageId: $0.id, authorName: $0.author, imageLoader: self.imageLoader)
         })
         
-        var rowModels = [RowViewModel]()
-        var rowCells = [CellViewModel]()
+        var rowModels = [ImageGalleryRowViewModel]()
+        var rowCells = [ImageCellViewModel]()
         for index in 0..<cellModels.count {
             rowCells.append(cellModels[index])
             if rowCells.count == 5 {
-                let isLast = index == cellModels.count - 1
-                rowModels.append(RowViewModel(cells: rowCells, isLastRow: isLast))
+                rowModels.append(ImageGalleryRowViewModel(cells: rowCells))
                 rowCells.removeAll()
             }
         }
         if !rowCells.isEmpty {
-            rowModels.append(RowViewModel(cells: rowCells, isLastRow: true))
+            rowModels.append(ImageGalleryRowViewModel(cells: rowCells))
         }
         
         self.data = rowModels
