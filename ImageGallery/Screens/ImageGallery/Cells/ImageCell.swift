@@ -11,36 +11,33 @@ import UIKit
 
 class ImageCell: UICollectionViewCell {
     
-    @IBOutlet weak var contentContainer: UIView!
-    
-    @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var authorLabel: UILabel!
+    private var imageView: UIImageView!
+    private var authorLabel: UILabel!
+    private var progressIndicator: UIActivityIndicatorView!
     
     private var imageLoadingTask: URLSessionTask?
     
-    static var nib: UINib {
-        return UINib(nibName: "ImageCell", bundle: nil)
-    }
-    
-    static var cellIdentifier: String {
+    static var reuseIdentifier: String {
         return "ImageCell"
     }
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
-        contentContainer.layer.cornerRadius = 12.0
-        
-        let path = UIBezierPath(roundedRect: CGRect(x: 0, y: 0, width: 150, height: 150), cornerRadius: 12)
-        let mask = CAShapeLayer()
-        mask.path = path.cgPath
-        imageView.layer.mask = mask
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.createViews()
+        self.setConstraints()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        self.createViews()
+        self.setConstraints()
     }
     
     override func prepareForReuse() {
         self.imageLoadingTask?.cancel()
         self.imageLoadingTask = nil
         
+        self.progressIndicator.stopAnimating()
         self.imageView.image = nil
         self.authorLabel.text = nil
         
@@ -48,13 +45,67 @@ class ImageCell: UICollectionViewCell {
     }
     
     func showCellModel(_ model: CellViewModel) {
-        self.imageView.image = nil //TODO:
         self.authorLabel.text = model.authorName
         
         if let pictureId = model.imageId {
+            progressIndicator.startAnimating()
             imageLoadingTask = model.imageLoader.loadPicture(withId: pictureId, completion: { [weak self] image in
+                self?.progressIndicator.stopAnimating()
                 self?.imageView.image = image
             })
         }
+        else {
+            imageView.image = nil
+        }
+    }
+    
+    private func createViews() {
+        contentView.backgroundColor = UIColor.lightGray
+        contentView.layer.cornerRadius = 12.0
+        contentView.layer.masksToBounds = true
+        contentView.clipsToBounds = true
+        
+        let imageFrame = CGRect(x: 0, y: 0, width: 150, height: 150)
+        imageView = UIImageView(frame: imageFrame)
+        imageView.contentMode = .scaleAspectFill
+        let path = UIBezierPath(roundedRect: imageFrame, cornerRadius: 12)
+        let mask = CAShapeLayer()
+        mask.path = path.cgPath
+        imageView.layer.mask = mask
+        imageView.clipsToBounds = true
+        contentView.addSubview(imageView)
+        
+        authorLabel = UILabel(frame: CGRect.zero)
+        authorLabel.font = UIFont.systemFont(ofSize: 13)
+        authorLabel.textAlignment = .center
+        contentView.addSubview(authorLabel)
+        
+        progressIndicator = UIActivityIndicatorView(style: .white)
+        progressIndicator.hidesWhenStopped = true
+        contentView.addSubview(progressIndicator)
+    }
+    
+    private func setConstraints() {
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            imageView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            imageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor, multiplier: 1.0)
+            ])
+        
+        authorLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            authorLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 0),
+            authorLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 12.0),
+            authorLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -12.0),
+            authorLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+            ])
+        
+        progressIndicator.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            progressIndicator.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            progressIndicator.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
+            ])
     }
 }

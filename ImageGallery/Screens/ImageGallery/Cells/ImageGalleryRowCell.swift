@@ -44,7 +44,7 @@ class ImageGalleryRowCell: UITableViewCell {
         collectionView = UICollectionView(frame: contentView.frame, collectionViewLayout: layout)
         contentView.addSubview(collectionView)
         
-        collectionView.register(ImageCell.nib, forCellWithReuseIdentifier: ImageCell.cellIdentifier)
+        collectionView.register(ImageCell.self, forCellWithReuseIdentifier: ImageCell.reuseIdentifier)
         collectionView.dataSource = self
         
         collectionView.backgroundColor = UIColor.darkGray
@@ -69,7 +69,7 @@ extension ImageGalleryRowCell: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ImageCell.cellIdentifier, for: indexPath) as! ImageCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ImageCell.reuseIdentifier, for: indexPath) as! ImageCell
         
         let model = viewModel.cells[indexPath.row]
         cell.showCellModel(model)
