@@ -13,6 +13,8 @@ class ImageGalleryRowCell: UITableViewCell {
     
     var viewModel: ImageGalleryRowViewModel! {
         didSet {
+            self.collectionView.dataSource = self
+            self.collectionView.contentOffset = CGPoint.zero
             self.collectionView.reloadData()
         }
     }
@@ -33,6 +35,11 @@ class ImageGalleryRowCell: UITableViewCell {
         self.createViews()
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        collectionView.dataSource = nil
+    }
+    
     private func createViews() {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -45,7 +52,6 @@ class ImageGalleryRowCell: UITableViewCell {
         contentView.addSubview(collectionView)
         
         collectionView.register(ImageCell.self, forCellWithReuseIdentifier: ImageCell.reuseIdentifier)
-        collectionView.dataSource = self
         
         collectionView.backgroundColor = UIColor.darkGray
         collectionView.showsHorizontalScrollIndicator = false

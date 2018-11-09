@@ -12,6 +12,7 @@ import UIKit
 class AppCoordinator {
     
     let picturesApi: PicturesAPI
+    let imageCache: ImageCache
     let imageLoader: ImageLoader
     
     let window: UIWindow
@@ -22,7 +23,11 @@ class AppCoordinator {
         rootViewController = UINavigationController()
         
         picturesApi = LoremPicsumAPI(session: URLSession.shared)
-        imageLoader = ProtoImageLoader(picturesApi: picturesApi)
+        
+        imageCache = CombinedImageCache()
+        imageCache.prepare()
+        
+        imageLoader = CachingImageLoader(picturesApi: picturesApi, cache: imageCache)
     }
     
     func start() {
