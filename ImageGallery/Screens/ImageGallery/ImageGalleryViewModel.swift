@@ -74,8 +74,8 @@ class ImageGalleryViewModel {
                 return
             }
             
-            let preparedPictures = Array(pictures.shuffled().prefix(maxCount))
-            self?.prepareData(from: preparedPictures)
+            let selectedPictures = Array(pictures.shuffled().prefix(maxCount))
+            self?.prepareData(from: selectedPictures)
         })
     }
     
