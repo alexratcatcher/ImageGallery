@@ -87,6 +87,11 @@ class ImageGalleryViewController: UIViewController {
             if let text = alert.textFields?.first?.text, let count = Int(text) {
                 self?.viewModel.requiredPicturesCount = count
             }
+            else {
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.0, execute: {
+                    self?.askForPicturesCount()
+                })
+            }
         })
         alert.addAction(okAction)
         
