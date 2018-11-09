@@ -6,7 +6,7 @@
 //  Copyright © 2018 Alexey Berkov. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 
 struct PictureData: Codable {
@@ -51,5 +51,26 @@ class LoremPicsumAPI {
             }
         })
         task.resume()
+    }
+    
+    func loadPicture(withId id: Int, completion: ((UIImage?)->Void)?) -> URLSessionTask {
+        var urlComponents = URLComponents(url: baseUrl.appendingPathComponent("150"), resolvingAgainstBaseURL: false)!
+        urlComponents.queryItems = [
+            URLQueryItem(name: "image", value: String(id))
+        ]
+        let url = urlComponents.url!
+        
+        let task = urlSession.dataTask(with: url, completionHandler: { data, response, error in
+            guard error == nil, let data = data, !data.isEmpty else {
+                completion?(nil)
+                return
+            }
+            
+            if let image = UIImage(data: data) {
+                completion?(image)
+            }
+        })
+        task.resume()
+        return task
     }
 }

@@ -22,6 +22,7 @@
 		B4C7BDE321954E9F002AF287 /* ImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4C7BDE121954E9F002AF287 /* ImageCell.xib */; };
 		B4C7BDE621956355002AF287 /* LoremPicsumAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C7BDE521956355002AF287 /* LoremPicsumAPI.swift */; };
 		B4C7BDE8219565A7002AF287 /* NetworkingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C7BDE7219565A7002AF287 /* NetworkingError.swift */; };
+		B4C7BDEC21957D44002AF287 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C7BDEB21957D44002AF287 /* ImageLoader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,7 @@
 		B4C7BDE121954E9F002AF287 /* ImageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageCell.xib; sourceTree = "<group>"; };
 		B4C7BDE521956355002AF287 /* LoremPicsumAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoremPicsumAPI.swift; sourceTree = "<group>"; };
 		B4C7BDE7219565A7002AF287 /* NetworkingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingError.swift; sourceTree = "<group>"; };
+		B4C7BDEB21957D44002AF287 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -193,6 +195,7 @@
 			children = (
 				B4C7BDE521956355002AF287 /* LoremPicsumAPI.swift */,
 				B4C7BDE7219565A7002AF287 /* NetworkingError.swift */,
+				B4C7BDEB21957D44002AF287 /* ImageLoader.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -331,6 +334,7 @@
 			files = (
 				B4C7BDDC21954681002AF287 /* ImageGalleryViewModel.swift in Sources */,
 				B4C7BDE621956355002AF287 /* LoremPicsumAPI.swift in Sources */,
+				B4C7BDEC21957D44002AF287 /* ImageLoader.swift in Sources */,
 				B4C7BDDF21954794002AF287 /* ImageGalleryRowCell.swift in Sources */,
 				B4C7BDD1219542EA002AF287 /* AppCoordinator.swift in Sources */,
 				B4C7BDE8219565A7002AF287 /* NetworkingError.swift in Sources */,

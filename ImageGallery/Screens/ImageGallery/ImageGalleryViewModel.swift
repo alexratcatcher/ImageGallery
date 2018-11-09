@@ -12,6 +12,7 @@ import Foundation
 struct CellViewModel {
     let imageId: Int?
     let authorName: String?
+    let imageLoader: ImageLoader
 }
 
 
@@ -32,6 +33,7 @@ enum ImageGalleryViewState {
 class ImageGalleryViewModel {
     
     private let picturesApi: LoremPicsumAPI
+    private let imageLoader: ImageLoader
     
     var data = [RowViewModel]()
     
@@ -43,37 +45,9 @@ class ImageGalleryViewModel {
     
     var onViewStateChanged: ((ImageGalleryViewState)->Void)?
     
-    init(picturesApi: LoremPicsumAPI) {
+    init(picturesApi: LoremPicsumAPI, imageLoader: ImageLoader) {
         self.picturesApi = picturesApi
-        
-        let firstRow = [CellViewModel(imageId: nil, authorName: "test1"),
-                        CellViewModel(imageId: nil, authorName: "test2"),
-                        CellViewModel(imageId: nil, authorName: "test3"),
-                        CellViewModel(imageId: nil, authorName: "test4"),
-                        CellViewModel(imageId: nil, authorName: "test5")]
-        
-        let secondRow = [CellViewModel(imageId: nil, authorName: "test11"),
-                         CellViewModel(imageId: nil, authorName: "test12"),
-                         CellViewModel(imageId: nil, authorName: "test13"),
-                         CellViewModel(imageId: nil, authorName: "test14"),
-                         CellViewModel(imageId: nil, authorName: "test15")]
-        
-        let thirdRow = [CellViewModel(imageId: nil, authorName: "test11"),
-                        CellViewModel(imageId: nil, authorName: "test12"),
-                        CellViewModel(imageId: nil, authorName: "test13"),
-                        CellViewModel(imageId: nil, authorName: "test14"),
-                        CellViewModel(imageId: nil, authorName: "test15")]
-        
-        let forthRow = [CellViewModel(imageId: nil, authorName: "test11"),
-                        CellViewModel(imageId: nil, authorName: "test12"),
-                        CellViewModel(imageId: nil, authorName: "test13"),
-                        CellViewModel(imageId: nil, authorName: "test14"),
-                        CellViewModel(imageId: nil, authorName: "test15")]
-        
-        data = [RowViewModel(cells: firstRow, isLastRow: false),
-                RowViewModel(cells: secondRow, isLastRow: false),
-                RowViewModel(cells: thirdRow, isLastRow: false),
-                RowViewModel(cells: forthRow, isLastRow: true)]
+        self.imageLoader = imageLoader
     }
 
     private func loadPicturesList(maxCount: Int) {
@@ -101,7 +75,7 @@ class ImageGalleryViewModel {
     
     private func prepareData(from pictures: [PictureData]) {
         let cellModels = pictures.map({
-            CellViewModel(imageId: $0.id, authorName: $0.author)
+            CellViewModel(imageId: $0.id, authorName: $0.author, imageLoader: self.imageLoader)
         })
         
         var rowModels = [RowViewModel]()

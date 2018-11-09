@@ -12,6 +12,7 @@ import UIKit
 class AppCoordinator {
     
     let picturesApi: LoremPicsumAPI
+    let imageLoader: ImageLoader
     
     let window: UIWindow
     let rootViewController: UINavigationController
@@ -21,6 +22,7 @@ class AppCoordinator {
         rootViewController = UINavigationController()
         
         picturesApi = LoremPicsumAPI(session: URLSession.shared)
+        imageLoader = ImageLoader(picturesApi: picturesApi)
     }
     
     func start() {
@@ -29,7 +31,7 @@ class AppCoordinator {
         let mainVC = ImageGalleryViewController.instantiate()
         mainVC.title = "Images"
         
-        let viewModel = ImageGalleryViewModel(picturesApi: picturesApi)
+        let viewModel = ImageGalleryViewModel(picturesApi: picturesApi, imageLoader: imageLoader)
         mainVC.viewModel = viewModel
         
         rootViewController.pushViewController(mainVC, animated: false)

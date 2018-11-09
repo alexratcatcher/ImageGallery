@@ -22,22 +22,12 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3bl-Sk-MGt">
                         <rect key="frame" x="0.0" y="0.0" width="150" height="175"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pd3-Ni-iwn">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5fu-fg-1hT">
                                 <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
-                                <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5fu-fg-1hT">
-                                        <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
-                                    </imageView>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="5fu-fg-1hT" firstAttribute="top" secondItem="pd3-Ni-iwn" secondAttribute="top" id="8c5-4w-WcV"/>
-                                    <constraint firstItem="5fu-fg-1hT" firstAttribute="leading" secondItem="pd3-Ni-iwn" secondAttribute="leading" id="RLV-sa-NcN"/>
-                                    <constraint firstAttribute="trailing" secondItem="5fu-fg-1hT" secondAttribute="trailing" id="SDu-xm-cHr"/>
-                                    <constraint firstAttribute="width" secondItem="pd3-Ni-iwn" secondAttribute="height" multiplier="1:1" id="bzs-tb-AsA"/>
-                                    <constraint firstAttribute="bottom" secondItem="5fu-fg-1hT" secondAttribute="bottom" id="k5a-ac-AC9"/>
+                                    <constraint firstAttribute="width" secondItem="5fu-fg-1hT" secondAttribute="height" multiplier="1:1" id="FPf-7G-wUz"/>
                                 </constraints>
-                            </view>
+                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZYX-z0-L0D">
                                 <rect key="frame" x="10" y="155" width="130" height="16"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
@@ -47,12 +37,12 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="5fu-fg-1hT" secondAttribute="trailing" id="2fj-Lc-wKw"/>
                             <constraint firstItem="ZYX-z0-L0D" firstAttribute="leading" secondItem="3bl-Sk-MGt" secondAttribute="leading" constant="10" id="4SH-GX-Ea2"/>
                             <constraint firstAttribute="trailing" secondItem="ZYX-z0-L0D" secondAttribute="trailing" constant="10" id="FCY-v1-Mzc"/>
                             <constraint firstAttribute="bottom" secondItem="ZYX-z0-L0D" secondAttribute="bottom" constant="4" id="Y3W-gV-24a"/>
-                            <constraint firstAttribute="trailing" secondItem="pd3-Ni-iwn" secondAttribute="trailing" id="ZKD-mi-Ns4"/>
-                            <constraint firstItem="pd3-Ni-iwn" firstAttribute="top" secondItem="3bl-Sk-MGt" secondAttribute="top" id="bkv-yY-d0j"/>
-                            <constraint firstItem="pd3-Ni-iwn" firstAttribute="leading" secondItem="3bl-Sk-MGt" secondAttribute="leading" id="s91-0A-QVz"/>
+                            <constraint firstItem="5fu-fg-1hT" firstAttribute="leading" secondItem="3bl-Sk-MGt" secondAttribute="leading" id="gc1-zR-7fC"/>
+                            <constraint firstItem="5fu-fg-1hT" firstAttribute="top" secondItem="3bl-Sk-MGt" secondAttribute="top" id="ger-up-VWA"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -69,7 +59,6 @@
             <connections>
                 <outlet property="authorLabel" destination="ZYX-z0-L0D" id="btp-8D-LZi"/>
                 <outlet property="contentContainer" destination="3bl-Sk-MGt" id="3M0-5m-Gkg"/>
-                <outlet property="imageContainer" destination="pd3-Ni-iwn" id="7TN-XH-drv"/>
                 <outlet property="imageView" destination="5fu-fg-1hT" id="NtX-Hm-NXF"/>
             </connections>
             <point key="canvasLocation" x="212.80000000000001" y="210.94452773613196"/>
