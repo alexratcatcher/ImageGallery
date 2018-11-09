@@ -9,8 +9,28 @@
 import UIKit
 
 
+class ImageLoadingRequest {
+    
+    let imageId: Int
+    var onImageLoaded: ((UIImage?)->Void)?
+    
+    fileprivate(set) var loadingTask: URLSessionTask?
+    
+    init(imageId: Int) {
+        self.imageId = imageId
+    }
+    
+    func cancel() {
+        self.loadingTask?.cancel()
+        self.loadingTask = nil
+        
+        self.onImageLoaded = nil
+    }
+}
+
+
 protocol ImageLoader {
-    func loadPicture(withId id: Int, completion: ((UIImage?)->Void)?) -> URLSessionTask
+    func loadPicture(request: ImageLoadingRequest)
 }
 
 
@@ -22,11 +42,12 @@ class ProtoImageLoader: ImageLoader {
         self.picturesApi = picturesApi
     }
     
-    func loadPicture(withId id: Int, completion: ((UIImage?)->Void)?) -> URLSessionTask {
-        return picturesApi.loadPicture(withId: id, completion: { image in
+    func loadPicture(request: ImageLoadingRequest) {
+        let task = picturesApi.loadPicture(withId: request.imageId, completion: { image in
             DispatchQueue.main.async {
-                completion?(image)
+                request.onImageLoaded?(image)
             }
         })
+        request.loadingTask = task
     }
 }

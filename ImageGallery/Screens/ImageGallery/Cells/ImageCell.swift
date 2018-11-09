@@ -15,7 +15,7 @@ class ImageCell: UICollectionViewCell {
     private var authorLabel: UILabel!
     private var progressIndicator: UIActivityIndicatorView!
     
-    private var imageLoadingTask: URLSessionTask?
+    private var imageLoadingRequest: ImageLoadingRequest?
     
     static var reuseIdentifier: String {
         return "ImageCell"
@@ -34,8 +34,8 @@ class ImageCell: UICollectionViewCell {
     }
     
     override func prepareForReuse() {
-        self.imageLoadingTask?.cancel()
-        self.imageLoadingTask = nil
+        self.imageLoadingRequest?.cancel()
+        self.imageLoadingRequest = nil
         
         self.progressIndicator.stopAnimating()
         self.imageView.image = nil
@@ -49,10 +49,13 @@ class ImageCell: UICollectionViewCell {
         
         if let pictureId = model.imageId {
             progressIndicator.startAnimating()
-            imageLoadingTask = model.imageLoader.loadPicture(withId: pictureId, completion: { [weak self] image in
+            
+            let request = ImageLoadingRequest(imageId: pictureId)
+            request.onImageLoaded = { [weak self] image in
                 self?.progressIndicator.stopAnimating()
                 self?.imageView.image = image
-            })
+            }
+            model.imageLoader.loadPicture(request: request)
         }
         else {
             imageView.image = nil
