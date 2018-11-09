@@ -9,11 +9,16 @@
 import UIKit
 
 
-class ImageLoader {
+protocol ImageLoader {
+    func loadPicture(withId id: Int, completion: ((UIImage?)->Void)?) -> URLSessionTask
+}
+
+
+class ProtoImageLoader: ImageLoader {
     
-    private let picturesApi: LoremPicsumAPI
+    private let picturesApi: PicturesAPI
     
-    init(picturesApi: LoremPicsumAPI) {
+    init(picturesApi: PicturesAPI) {
         self.picturesApi = picturesApi
     }
     

@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		B4C7BDA2219541E5002AF287 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C7BDA1219541E5002AF287 /* AppDelegate.swift */; };
-		B4C7BDA4219541E5002AF287 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C7BDA3219541E5002AF287 /* ViewController.swift */; };
 		B4C7BDA7219541E5002AF287 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4C7BDA5219541E5002AF287 /* Main.storyboard */; };
 		B4C7BDA9219541E6002AF287 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B4C7BDA8219541E6002AF287 /* Assets.xcassets */; };
 		B4C7BDAC219541E6002AF287 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4C7BDAA219541E6002AF287 /* LaunchScreen.storyboard */; };
@@ -45,7 +44,6 @@
 /* Begin PBXFileReference section */
 		B4C7BD9E219541E5002AF287 /* ImageGallery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageGallery.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4C7BDA1219541E5002AF287 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		B4C7BDA3219541E5002AF287 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		B4C7BDA6219541E5002AF287 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B4C7BDA8219541E6002AF287 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B4C7BDAB219541E6002AF287 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -116,10 +114,8 @@
 			isa = PBXGroup;
 			children = (
 				B4C7BDCF219542D6002AF287 /* Application */,
-				B4C7BDD6219545F1002AF287 /* Domain */,
 				B4C7BDE42195632C002AF287 /* Networking */,
 				B4C7BDD221954370002AF287 /* Screens */,
-				B4C7BDA3219541E5002AF287 /* ViewController.swift */,
 				B4C7BDA5219541E5002AF287 /* Main.storyboard */,
 				B4C7BDA8219541E6002AF287 /* Assets.xcassets */,
 				B4C7BDAA219541E6002AF287 /* LaunchScreen.storyboard */,
@@ -171,13 +167,6 @@
 				B4C7BDDB21954681002AF287 /* ImageGalleryViewModel.swift */,
 			);
 			path = ImageGallery;
-			sourceTree = "<group>";
-		};
-		B4C7BDD6219545F1002AF287 /* Domain */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Domain;
 			sourceTree = "<group>";
 		};
 		B4C7BDDD21954783002AF287 /* Cells */ = {
@@ -338,7 +327,6 @@
 				B4C7BDDF21954794002AF287 /* ImageGalleryRowCell.swift in Sources */,
 				B4C7BDD1219542EA002AF287 /* AppCoordinator.swift in Sources */,
 				B4C7BDE8219565A7002AF287 /* NetworkingError.swift in Sources */,
-				B4C7BDA4219541E5002AF287 /* ViewController.swift in Sources */,
 				B4C7BDD5219543AA002AF287 /* ImageGalleryViewController.swift in Sources */,
 				B4C7BDE221954E9F002AF287 /* ImageCell.swift in Sources */,
 				B4C7BDA2219541E5002AF287 /* AppDelegate.swift in Sources */,

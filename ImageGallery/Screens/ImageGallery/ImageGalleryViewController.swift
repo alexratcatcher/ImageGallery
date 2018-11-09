@@ -68,11 +68,13 @@ class ImageGalleryViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        viewModel.requiredPicturesCount = 42
+        askForPicturesCount()
     }
     
     func showViewState(_ state: ImageGalleryViewState) {
         switch state {
+        case .askForCount:
+            self.askForPicturesCount()
         case .loading:
             break
         case .error(let error):
@@ -82,6 +84,20 @@ class ImageGalleryViewController: UIViewController {
         case .pictures:
             tableView.reloadData()
         }
+    }
+    
+    func askForPicturesCount() {
+        let alert = UIAlertController(title: "", message: "Enter desired pictures count", preferredStyle: .alert)
+        alert.addTextField(configurationHandler: nil)
+        
+        let okAction = UIAlertAction(title: "Ok", style: .cancel, handler: { [weak self] action in
+            if let text = alert.textFields?.first?.text, let count = Int(text) {
+                self?.viewModel.requiredPicturesCount = count
+            }
+        })
+        alert.addAction(okAction)
+        
+        present(alert, animated: true, completion: nil)
     }
 }
 

@@ -23,6 +23,7 @@ struct RowViewModel {
 
 
 enum ImageGalleryViewState {
+    case askForCount
     case loading
     case empty
     case pictures
@@ -32,7 +33,7 @@ enum ImageGalleryViewState {
 
 class ImageGalleryViewModel {
     
-    private let picturesApi: LoremPicsumAPI
+    private let picturesApi: PicturesAPI
     private let imageLoader: ImageLoader
     
     var data = [RowViewModel]()
@@ -45,7 +46,7 @@ class ImageGalleryViewModel {
     
     var onViewStateChanged: ((ImageGalleryViewState)->Void)?
     
-    init(picturesApi: LoremPicsumAPI, imageLoader: ImageLoader) {
+    init(picturesApi: PicturesAPI, imageLoader: ImageLoader) {
         self.picturesApi = picturesApi
         self.imageLoader = imageLoader
     }

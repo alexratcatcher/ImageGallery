@@ -15,7 +15,13 @@ struct PictureData: Codable {
 }
 
 
-class LoremPicsumAPI {
+protocol PicturesAPI {
+    func requestPicturesList(completion: @escaping ([PictureData], Error?) -> Void)
+    func loadPicture(withId id: Int, completion: ((UIImage?)->Void)?) -> URLSessionTask
+}
+
+
+class LoremPicsumAPI: PicturesAPI {
     
     let baseUrl = URL(string: "https://picsum.photos")!
     
@@ -54,13 +60,14 @@ class LoremPicsumAPI {
     }
     
     func loadPicture(withId id: Int, completion: ((UIImage?)->Void)?) -> URLSessionTask {
-        var urlComponents = URLComponents(url: baseUrl.appendingPathComponent("150"), resolvingAgainstBaseURL: false)!
+        let url = baseUrl.appendingPathComponent("150")
+        var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false)!
         urlComponents.queryItems = [
             URLQueryItem(name: "image", value: String(id))
         ]
-        let url = urlComponents.url!
+        let requestUrl = urlComponents.url!
         
-        let task = urlSession.dataTask(with: url, completionHandler: { data, response, error in
+        let task = urlSession.dataTask(with: requestUrl, completionHandler: { data, response, error in
             guard error == nil, let data = data, !data.isEmpty else {
                 completion?(nil)
                 return
