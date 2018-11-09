@@ -55,7 +55,7 @@ class ImageCell: UICollectionViewCell {
                 self?.progressIndicator.stopAnimating()
                 self?.imageView.image = image
             }
-            model.imageLoader.loadPicture(request: request)
+            model.loadPicture(request)
         }
         else {
             imageView.image = nil
@@ -70,6 +70,7 @@ class ImageCell: UICollectionViewCell {
         
         let imageFrame = CGRect(x: 0, y: 0, width: 150, height: 150)
         imageView = UIImageView(frame: imageFrame)
+        imageView.backgroundColor = UIColor.lightGray
         imageView.contentMode = .scaleAspectFill
         let path = UIBezierPath(roundedRect: imageFrame, cornerRadius: 12)
         let mask = CAShapeLayer()
@@ -81,9 +82,11 @@ class ImageCell: UICollectionViewCell {
         authorLabel = UILabel(frame: CGRect.zero)
         authorLabel.font = UIFont.systemFont(ofSize: 13)
         authorLabel.textAlignment = .center
+        authorLabel.backgroundColor = UIColor.lightGray
         contentView.addSubview(authorLabel)
         
         progressIndicator = UIActivityIndicatorView(style: .white)
+        progressIndicator.backgroundColor = UIColor.lightGray
         progressIndicator.hidesWhenStopped = true
         contentView.addSubview(progressIndicator)
     }

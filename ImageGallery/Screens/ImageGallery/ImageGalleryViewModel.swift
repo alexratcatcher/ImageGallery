@@ -12,7 +12,7 @@ import Foundation
 struct ImageCellViewModel {
     let imageId: Int?
     let authorName: String?
-    let imageLoader: ImageLoader
+    let loadPicture: (ImageLoadingRequest)->Void
 }
 
 
@@ -81,7 +81,9 @@ class ImageGalleryViewModel {
     
     private func prepareData(from pictures: [PictureData]) {
         let cellModels = pictures.map({
-            ImageCellViewModel(imageId: $0.id, authorName: $0.author, imageLoader: self.imageLoader)
+            ImageCellViewModel(imageId: $0.id, authorName: $0.author, loadPicture: { [weak self] request in
+                self?.imageLoader.loadPicture(request: request)
+            })
         })
         
         var rowModels = [ImageGalleryRowViewModel]()
