@@ -72,10 +72,8 @@ class ImageCell: UICollectionViewCell {
         imageView = UIImageView(frame: imageFrame)
         imageView.backgroundColor = Colors.imageBackgroundColor
         imageView.contentMode = .scaleAspectFill
-        let path = UIBezierPath(roundedRect: imageFrame, cornerRadius: 12)
-        let mask = CAShapeLayer()
-        mask.path = path.cgPath
-        imageView.layer.mask = mask
+        imageView.layer.cornerRadius = 12.0
+        imageView.layer.masksToBounds = true
         imageView.clipsToBounds = true
         contentView.addSubview(imageView)
         
@@ -85,7 +83,7 @@ class ImageCell: UICollectionViewCell {
         authorLabel.backgroundColor = Colors.cellBackgroundColor
         contentView.addSubview(authorLabel)
         
-        progressIndicator = UIActivityIndicatorView(style: .white)
+        progressIndicator = UIActivityIndicatorView(style: .gray)
         progressIndicator.backgroundColor = Colors.imageBackgroundColor
         progressIndicator.hidesWhenStopped = true
         contentView.addSubview(progressIndicator)
